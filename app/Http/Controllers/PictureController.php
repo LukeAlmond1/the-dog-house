@@ -38,7 +38,38 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        // See PictureControllerTest to see what this should do
+        // #Step 1: Validate the form fields
+        // ----------------------------------------------------------------------------------------
+        $validator = [
+            'fields' => [
+                'name' => 'required',
+                'image' => ['mimes:jpg,jpeg,png,gif', 'required', 'max:2048']
+            ],
+            'rules' => [
+                'name.required' => 'Ooops, you forgot to add a name',
+                'image.required' => 'Ooops, you forgot to add a picture of the doggo',
+                'image.mimes' => 'Ooops, please upload an image of the format .jpg .jpeg .png .gif'
+            ]
+        ];
+
+        $request->validate($validator['fields'], $validator['rules']);
+
+        // #Step 2: Add image to public folder
+        // ----------------------------------------------------------------------------------------
+        $request->file('image')->store("public");
+
+        // #Step 3: Save the data in the database
+        // ----------------------------------------------------------------------------------------
+        $picture = new Picture();
+        $picture->name = $request->name;
+        $picture->file_path = $request->file('image')->hashName();
+        $picture->save();
+
+        // #Step 4: Redirect user back to the home page
+        // ----------------------------------------------------------------------------------------
+        return redirect(route('pictures.index'))->with([
+            'success' => 'Successfully uploaded dog image'
+        ]);
     }
 
     /**
