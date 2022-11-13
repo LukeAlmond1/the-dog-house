@@ -80,6 +80,14 @@ class PictureController extends Controller
      */
     public function upvote(Request $request, Picture $picture)
     {
-        //
+        // Step 1: Increment the votes for that picture by 1
+        // ----------------------------------------------------------------------------------------
+        if ($picture) $picture->increment('votes');
+
+        // Step 1: Redirect back to home page
+        // ----------------------------------------------------------------------------------------
+        return redirect(route('pictures.index'))->with([
+            'success' => 'Successfully upvoted dog'
+        ]);
     }
 }
