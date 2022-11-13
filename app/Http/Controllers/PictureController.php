@@ -15,7 +15,7 @@ class PictureController extends Controller
      */
     public function index()
     {
-        $pictures = Picture::all();
+        $pictures = Picture::orderBy('votes', 'desc')->get();
 
         return view('index', ['pictures' => $pictures]);
     }
