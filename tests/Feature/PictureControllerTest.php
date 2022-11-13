@@ -50,7 +50,7 @@ class PictureControllerTest extends TestCase
             'image' => $file,
             'name' => 'Lassie'
         ]);
-        
+
         $response->assertStatus(302);
         $response->assertRedirect('/');
 
