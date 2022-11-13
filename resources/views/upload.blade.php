@@ -37,7 +37,7 @@
         {{-- --------------------------------------------------------------------------------- --}}
         <fieldset class="mt-4">
             <label
-                for="dog_image"
+                for="image"
                 class="font-bold"
             >
                 Upload an image of your doggo here...
@@ -45,11 +45,11 @@
 
             <input
                 class="border-2 mt-1 border-slate-700 rounded-md w-full py-2 px-4 outline-none focus:border-blue-500"
-                name="dog_image"
+                name="image"
                 type="file"
             />
 
-            <p class="text-red-500 mt-1">@error("dog_image"){{ $message }}@enderror</p>
+            <p class="text-red-500 mt-1">@error("image"){{ $message }}@enderror</p>
         </fieldset>
 
         {{-- Submit form --}}
