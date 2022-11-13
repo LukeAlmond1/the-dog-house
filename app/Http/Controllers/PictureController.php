@@ -67,7 +67,7 @@ class PictureController extends Controller
 
         // #Step 4: Redirect user back to the home page
         // ----------------------------------------------------------------------------------------
-        return redirect(route('pictures.index'))->with([
+        return redirect("/")->with([
             'success' => 'Successfully uploaded dog image'
         ]);
     }
@@ -86,7 +86,7 @@ class PictureController extends Controller
 
         // Step 1: Redirect back to home page
         // ----------------------------------------------------------------------------------------
-        return redirect(route('pictures.index'))->with([
+        return redirect('/')->with([
             'success' => 'Successfully upvoted dog'
         ]);
     }
